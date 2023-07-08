@@ -1,11 +1,7 @@
-![图片](https://github.com/whiter007/inner-spiral-algorithm/assets/94297098/5a292964-6ef6-4773-95d7-9757beacd2f7)# inner-spiral-algorithm
+# inner-spiral-algorithm
 This code calculates the coordinates of a given value in the inner spiral algorithm, with the center point at (0,0).
-				
-	7	8	9	10
-	6	1	2	11
-	5	4	3	12
-		15	14	13
-
+# Illustration in table
+![图片](https://github.com/whiter007/inner-spiral-algorithm/assets/94297098/5a292964-6ef6-4773-95d7-9757beacd2f7)
 # input and output
 ## input range
 1 ~ 2147483647
