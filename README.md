@@ -10,7 +10,7 @@ Z轴：向上为正半轴，向下为负半轴
 
 X轴：向左为正半轴，向右为负半轴
 
-输出坐标为(x,z)
+输出坐标为 ( x , z )
 
 # input and output
 ## input range
