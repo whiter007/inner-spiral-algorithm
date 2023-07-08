@@ -45,7 +45,7 @@ int main() {
             if (var_step_local==0){var_step_local = var_step_global;} 
        }
        
-       cout<<"坐标("<<var_x<<","<<var_z<<")";
+       cout<<"坐标("<<var_x<<","<<var_z<<")"<<endl;
     }
     return 0;
 }
