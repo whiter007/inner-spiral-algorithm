@@ -1,0 +1,34 @@
+/scoreboard objective add num dummy
+/scoreboard objective add Num dummy
+/scoreboard objective add var_facing dummy
+/scoreboard objective add var_judgment dummy
+/scoreboard objective add var_step_local dummy
+/scoreboard objective add var_step_global dummy
+/scoreboard objective add var_x dummy
+/scoreboard objective add var_z dummy
+/scoreboard objective add var_num dummy
+
+/scoreboard players set @a var_facing 0
+/scoreboard players set @a var_judgment 0
+/scoreboard players set @a var_step_local 0
+/scoreboard players set @a var_step_global 0
+/scoreboard players set @a var_x 0
+/scoreboard players set @a var_z 0
+/scoreboard players set @a var_num 0
+
+repeating_command:
+/execute at @a if score @s var_num = @s num run tag @s add finish
+/scoreboard players add @a var_num 1
+/execute at @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing = Num one run scoreboard players add @s var_x -1
+/execute at @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing = Num two run scoreboard players add @s var_z -1
+/execute at @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing = Num three run scoreboard players add @s var_x 1
+/execute at @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing = Num four run scoreboard players add @s var_z 1
+
+/scoreboard players add @a[scores={var_step_local=1..},tag=!finishi] var_step_local -1
+/execute at @a[tag=!finishi] if score @s var_step_local = Num zero run scoreboard players add @s var_facing 1
+/execute at @a[tag=!finishi] if score @s var_step_local = Num zero run scoreboard players add @s var_judgment 1
+/execute at @a[tag=!finishi] if score @s var_facing = Num five run scoreboard players add @s var_facing -4
+
+/execute if score @a[tag=!finishi] var_judgment = Num one run scoreboard players add @a[tag=!finishi] var_step_global 1
+/execute if score @a[tag=!finishi] var_judgment = Num one run scoreboard players add @a[tag=!finishi] var_judgment -2
+/execute at @a[tag=!finishi] if score @s var_step_local = Num zero run scoreboard players operation @s var_step_local = @s var_step_global
