@@ -1,7 +1,5 @@
-/scoreboard objective add num dummy                //target num
-/scoreboard objective add Num dummy                //literals num
+/scoreboard objective add num_target dummy         //target num
 /scoreboard objective add var_facing dummy         //direction variable
-/scoreboard objective add var_judgment dummy       //turn judgment variable
 /scoreboard objective add var_step_local dummy     //local step variable
 /scoreboard objective add var_step_global dummy    //global step variable
 /scoreboard objective add var_x dummy              //target coordinate variable x
@@ -9,7 +7,6 @@
 /scoreboard objective add var_num dummy            //step count variable
 
 /scoreboard players set @a var_facing 0
-/scoreboard players set @a var_judgment 0
 /scoreboard players set @a var_step_local 0
 /scoreboard players set @a var_step_global 0
 /scoreboard players set @a var_x 0
@@ -18,20 +15,19 @@
 
 repeating_command:
 
-/execute at @a if score @s var_num = @s num run tag @s add finish
+/execute at @a if score @s var_num = @s num_target run tag @s add finish
 /scoreboard players add @a var_num 1
 
-/execute at @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing = Num one run scoreboard players add @s var_x -1
-/execute at @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing = Num two run scoreboard players add @s var_z -1
-/execute at @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing = Num three run scoreboard players add @s var_x 1
-/execute at @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing = Num four run scoreboard players add @s var_z 1
+
+/testfor @a[scores={var_step_local=1..},tag=!finishi]
+/execute as @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing matches 1 run scoreboard players add @s var_x -1
+/execute as @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing matches 2 run scoreboard players add @s var_z -1
+/execute as @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing matches 3 run scoreboard players add @s var_x 1
+/execute as @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing matches 4 run scoreboard players add @s var_z 1
 /scoreboard players add @a[scores={var_step_local=1..},tag=!finishi] var_step_local -1
 
-/execute at @a[tag=!finishi] if score @s var_step_local = Num zero run scoreboard players add @s var_facing 1
-/execute at @a[tag=!finishi] if score @s var_facing = Num five run scoreboard players add @s var_facing -4
+/scoreboard players add @a[scores={var_step_local=0},tag=!finishi] var_facing 1
+/execute as @a[scores={var_step_local=0},tag=!finishi] if score @s var_facing = matches 5 run scoreboard players add @s var_facing -4
 
-/execute at @a[tag=!finishi] if score @s var_step_local = Num zero run scoreboard players add @s var_judgment 1
-/execute if score @a[tag=!finishi] var_judgment = Num one run scoreboard players add @a[tag=!finishi] var_step_global 1
-/execute if score @a[tag=!finishi] var_judgment = Num one run scoreboard players add @a[tag=!finishi] var_judgment -2
-
-/execute at @a[tag=!finishi] if score @s var_step_local = Num zero run scoreboard players operation @s var_step_local = @s var_step_global
+/execute as @a[scores={var_step_local=0},tag=!finishi] unless score @s var_facing matches 2 unless score @s var_facing matches 4 run scoreboard players add @s var_step_global 1
+/execute as @a[scores={var_step_local=0},tag=!finishi] run scoreboard players operation @s var_step_local = @s var_step_global
