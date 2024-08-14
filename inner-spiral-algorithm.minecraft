@@ -15,8 +15,8 @@
 
 repeating_command:
 
-/execute at @a[tag=inner_spiral] if score @s var_num = @s num_target run tag @s add finish
-/scoreboard players add @a[tag=inner_spiral] var_num 1
+/execute as @a[tag=inner_spiral,tag=!finishi] if score @s var_num = @s num_target run tag @s add finish
+/scoreboard players add @a[tag=inner_spiral,tag=!finishi] var_num 1
 
 /execute as @a[scores={var_step_local=1..},tag=inner_spiral,tag=!finishi] if score @s var_facing matches 1 run scoreboard players add @s var_x -1
 /execute as @a[scores={var_step_local=1..},tag=inner_spiral,tag=!finishi] if score @s var_facing matches 2 run scoreboard players add @s var_z -1
@@ -25,7 +25,7 @@ repeating_command:
 /scoreboard players add @a[scores={var_step_local=1..},tag=inner_spiral,tag=!finishi] var_step_local -1
 
 /scoreboard players add @a[scores={var_step_local=0},tag=inner_spiral,tag=!finishi] var_facing 1
-/execute as @a[scores={var_step_local=0},tag=inner_spiral,tag=!finishi] if score @s var_facing = matches 5 run scoreboard players add @s var_facing -4
+/execute as @a[scores={var_step_local=0},tag=inner_spiral,tag=!finishi] if score @s var_facing matches 5 run scoreboard players add @s var_facing -4
 
 /execute as @a[scores={var_step_local=0},tag=inner_spiral,tag=!finishi] unless score @s var_facing matches 2 unless score @s var_facing matches 4 run scoreboard players add @s var_step_global 1
 /execute as @a[scores={var_step_local=0},tag=inner_spiral,tag=!finishi] run scoreboard players operation @s var_step_local = @s var_step_global
