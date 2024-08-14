@@ -18,8 +18,6 @@ repeating_command:
 /execute at @a if score @s var_num = @s num_target run tag @s add finish
 /scoreboard players add @a var_num 1
 
-
-/testfor @a[scores={var_step_local=1..},tag=!finishi]
 /execute as @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing matches 1 run scoreboard players add @s var_x -1
 /execute as @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing matches 2 run scoreboard players add @s var_z -1
 /execute as @a[scores={var_step_local=1..},tag=!finishi] if score @s var_facing matches 3 run scoreboard players add @s var_x 1
